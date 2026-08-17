@@ -1,4 +1,4 @@
-# Tennis Match Prediction
+# WTA Grand Slam Match Prediction
 
 A neural network that predicts pre-match Bet365 betting odds for WTA Grand
 Slam matches, with a desktop app for testing predictions interactively.
