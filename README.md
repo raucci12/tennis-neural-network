@@ -20,6 +20,9 @@ and [tennis-data.co.uk](http://www.tennis-data.co.uk/).
 - `active_players.csv` — current WTA rankings snapshot used to filter the
   player dropdown to active players only (retired players stay in the
   training data, just hidden from the dropdown)
+- `tennis_model.h5`, `scalers.pkl`, `encoders.pkl`, `features.pkl` —
+  pre-trained model artifacts, included so you can run the app immediately
+  without training anything yourself
 - `requirements.txt` — pinned dependency versions
 
 ## Setup
@@ -30,18 +33,28 @@ Requires Python 3.10-3.13 (TensorFlow doesn't yet support 3.14+).
 pip install -r requirements.txt
 ```
 
-## Running it
+## Quick start (use the pre-trained model)
 
-Run these in order from the project folder:
+The trained model is already included in this repo, so you can go straight
+to the app:
 
 ```bash
-python clean_data.py     # builds the training data + player lookup
-python tennis_cv.py      # trains the model (takes a while -- 300 epochs x 5 folds)
-python tennis_app.py     # opens the prediction app
+python tennis_app.py
 ```
 
-Each step only needs to be re-run if you change the underlying data --
-`tennis_app.py` can be re-run on its own once the model exists.
+## Retraining from scratch
+
+If you want to retrain the model yourself (e.g. after updating the data or
+tweaking the architecture):
+
+```bash
+python clean_data.py     # rebuilds the training data + player lookup
+python tennis_cv.py      # retrains the model (takes a while -- 300 epochs x 5 folds)
+python tennis_app.py     # opens the prediction app with your newly trained model
+```
+
+This will overwrite `tennis_model.h5`, `scalers.pkl`, `encoders.pkl`, and
+`features.pkl` with your own freshly trained versions.
 
 ## Updating the active player list
 
