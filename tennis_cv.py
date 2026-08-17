@@ -4,6 +4,8 @@ Created on Wed Dec  4 18:05:39 2024
 
 @author: raucc
 """
+import argparse
+import os
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import KFold
@@ -14,6 +16,15 @@ from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
 from tensorflow.keras.regularizers import l2
 import pickle
+
+# Default location of the dataset relative to this script.
+# Anyone running this on a new machine just drops the CSV into a
+# "data" folder next to tennis_cv.py -- no code edits required.
+DEFAULT_DATASET_PATH = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),
+    "data",
+    "Full Dataset - Cleaned & Feature Engineering.csv",
+)
 
 def create_improved_model(input_dim, learning_rate=0.001):
     """
@@ -154,9 +165,34 @@ def train_model_with_cv(X, y, n_splits=5):
     
     return np.mean(fold_results), np.std(fold_results)
 
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Train the tennis match outcome prediction neural network."
+    )
+    parser.add_argument(
+        "--data-path",
+        type=str,
+        default=DEFAULT_DATASET_PATH,
+        help=(
+            "Path to the training CSV. Defaults to ./data/Full Dataset - "
+            "Cleaned & Feature Engineering.csv relative to this script."
+        ),
+    )
+    return parser.parse_args()
+
+
 def main():
+    args = parse_args()
+    dataset_path = args.data_path
+
+    if not os.path.isfile(dataset_path):
+        raise FileNotFoundError(
+            f"Could not find dataset at '{dataset_path}'.\n"
+            "Place the CSV there, or point to it explicitly with:\n"
+            '  python tennis_cv.py --data-path "/path/to/your/dataset.csv"'
+        )
+
     # Load dataset
-    dataset_path = r'C:\Users\raucc\OneDrive\Documents\BIA 678 Big Data Technologies\Course Project Part 2\Full Dataset - Cleaned & Feature Engineering.csv'
     df = pd.read_csv(dataset_path)
     
     # Apply feature engineering
