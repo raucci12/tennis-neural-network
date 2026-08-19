@@ -47,7 +47,7 @@ another's. A virtual environment keeps each project's packages completely
 separate.
 
 ```bash
-git clone <(https://github.com/raucci12/tennis-neural-network)>
+git clone (https://github.com/raucci12/tennis-neural-network)
 cd tennis-neural-network
 
 python -m venv venv
