@@ -9,7 +9,7 @@ and [tennis-data.co.uk](http://www.tennis-data.co.uk/).
 
 ## What's in this repo
 
-- `Full_Dataset.xlsx` — raw merged match + odds data
+- `Full_Dataset.xlsx` — raw, merged WTA Grand Slam match + odds data
 - `clean_data.py` — cleans the raw data into model-ready features, and
   builds the player lookup (names, heights, hands, current rank/points)
   used by the app's dropdowns
