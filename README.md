@@ -9,9 +9,7 @@ and [tennis-data.co.uk](http://www.tennis-data.co.uk/).
 
 ## Demo
 
-<!-- TODO: paste your recorded video link here, e.g.:
-https://github.com/user-attachments/assets/your-video-id-here
--->
+[![Tennis Match Prediction Demo](https://img.youtube.com/vi/_me9QrWBoIw/0.jpg)](https://youtu.be/_me9QrWBoIw)
 
 A short walkthrough selecting players, running a prediction, and using
 the live match-duration slider to see odds update in real time.
@@ -47,7 +45,7 @@ another's. A virtual environment keeps each project's packages completely
 separate.
 
 ```bash
-git clone https://github.com/raucci12/tennis-neural-network
+git clone <this-repo-url>
 cd tennis-neural-network
 
 python -m venv venv
